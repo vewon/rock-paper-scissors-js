@@ -1,13 +1,13 @@
 function getComputerChoice() {
 
     let random = Math.floor(Math.random() * 3);
-    let computerChoice = getChoice( random );
+    let computerChoice = getRandomChoice( random );
 
     console.log(`Computer Choice: ${computerChoice}`);
 
 }
 
-function getChoice( choice ) {
+function getRandomChoice( choice ) {
     switch ( choice ) {
         case 0:
             return "rock";
@@ -24,4 +24,11 @@ function getChoice( choice ) {
     }
 }
 
+function getHumanChoice() {
+    let userChoice = prompt("Enter your choice: ");
+
+    console.log(`Human Choice: ${userChoice}`);
+}
+
+getHumanChoice();
 getComputerChoice();
