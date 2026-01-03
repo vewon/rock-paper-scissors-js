@@ -1,5 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
+const maxRounds = 5;
+let currentRounds = 0;
 
 function getComputerChoice() {
 
@@ -81,10 +83,18 @@ function loseRound( humanChoice, computerChoice ) {
 }
 
 function displayScore() {
+    currentRounds++;
     console.log("*** Current Scores ***");
+    console.log(`* Current Round: ${currentRounds}   *`)
     console.log(`* Human Score: ${humanScore}     *`);
     console.log(`* Computer Score: ${computerScore}  *`);
     console.log("**********************");
 }
 
-playRound( getHumanChoice(), getComputerChoice() )
+function playGame() {
+    for ( let i = 0; i < maxRounds; i++ ) {
+        playRound( getHumanChoice(), getComputerChoice() )
+    }
+}
+
+playGame();
