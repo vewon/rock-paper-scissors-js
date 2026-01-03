@@ -7,6 +7,7 @@ function getComputerChoice() {
     let computerChoice = getRandomChoice( random );
 
     console.log(`Computer Choice: ${computerChoice}`);
+    return computerChoice;
 
 }
 
@@ -28,10 +29,62 @@ function getRandomChoice( choice ) {
 }
 
 function getHumanChoice() {
-    let userChoice = prompt("Enter your choice: ");
+    let humanChoice = prompt("Enter your choice: ");
 
-    console.log(`Human Choice: ${userChoice}`);
+    humanChoice = humanChoice.toLowerCase();
+
+    console.log(`Human Choice: ${humanChoice}`);
+    return humanChoice;
 }
 
-getHumanChoice();
-getComputerChoice();
+function playRound( humanChoice, computerChoice ) {
+    if ( humanChoice === computerChoice ) {
+        console.log("It's a tie!");
+    }
+    else if ( humanChoice === "rock" ) {
+        if ( computerChoice === "paper" ) {
+            loseRound( humanChoice, computerChoice );
+        } else {
+            winRound( humanChoice, computerChoice );
+        }
+    }
+    else if ( humanChoice === "paper" ) {
+        if ( computerChoice === "scissors" ) {
+            loseRound( humanChoice, computerChoice );
+        } else {
+            winRound( humanChoice, computerChoice );
+        }
+    }
+    else if ( humanChoice === "scissors" ) {
+       if ( computerChoice === "rock" ) {
+            loseRound( humanChoice, computerChoice );
+        } else {
+            winRound( humanChoice, computerChoice );
+        } 
+    }
+    else {
+        console.log("Invalid Option. You lose!");
+        computerScore++;
+    }
+
+    displayScore();
+}
+
+function winRound( humanChoice, computerChoice ) {
+    console.log(`You win! ${humanChoice} beats ${computerChoice}!`)
+    humanScore++;
+}
+
+function loseRound( humanChoice, computerChoice ) {
+    console.log(`You lose! ${computerChoice} beats ${humanChoice}!`)
+    computerScore++;
+}
+
+function displayScore() {
+    console.log("*** Current Scores ***");
+    console.log(`* Human Score: ${humanScore}     *`);
+    console.log(`* Computer Score: ${computerScore}  *`);
+    console.log("**********************");
+}
+
+playRound( getHumanChoice(), getComputerChoice() )
